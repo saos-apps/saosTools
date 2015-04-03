@@ -4,6 +4,8 @@
 #' taken from \code{\link[saos]{courts}} and coordinates obtained from Google 
 #' Maps API. Names and types of courts are also included.
 #'
+#' @encoding UTF-8
+#'
 #' @format A data frame with 291 rows and 5 variables:
 #' \describe{
 #'   \item{lon}{longitude}

@@ -3,7 +3,7 @@ Type: Package
 Title: Utilities for saos package
 Version: 0.1
 Date: 2015-04-03
-Author: person("Bartosz", "Chrol", email="bartek.chrol@gmail.com",
+Authors@R: person("Bartosz", "Chrol", email="bartek.chrol@gmail.com",
     role=c("aut", "cre"))
 Description: Utilities for working with \href{saos}{https://github.com/bartekch/saos}
     package: shapefiles with coverage of appeal and regional courts, dataset with
