@@ -1,0 +1,23 @@
+Package: saosTools
+Type: Package
+Title: Utilities for saos package
+Version: 0.1
+Date: 2015-04-03
+Author: person("Bartosz", "Chrol", email="bartek.chrol@gmail.com",
+    role=c("aut", "cre"))
+Description: Utilities for working with \href{saos}{https://github.com/bartekch/saos}
+    package: shapefiles with coverage of appeal and regional courts, dataset with
+    precises courts' coordinates, functions for common tasks.
+BugReports: https://github.com/saos-apps/saosTools/issues
+Depends:
+    R (>= 3.1.3)
+License: GPL-2
+LazyData: true
+Imports:
+    saos
+Suggests:
+    knitr,
+    testthat
+VignetteBuilder: knitr
+
+URL: https://github.com/saos-apps/saosTools
