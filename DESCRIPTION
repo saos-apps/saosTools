@@ -19,5 +19,4 @@ Suggests:
     knitr,
     testthat
 VignetteBuilder: knitr
-
 URL: https://github.com/saos-apps/saosTools

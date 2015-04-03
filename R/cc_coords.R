@@ -16,4 +16,4 @@
 #' @docType data
 #' @source \href{https://saos-test.icm.edu.pl}{SAOS}, 
 #' \href{http://code.google.com/apis/maps/documentation/geocoding}{Google Maps API}
-NULL
+"cc_coords"

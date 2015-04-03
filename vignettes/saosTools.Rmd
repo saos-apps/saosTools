@@ -1,0 +1,22 @@
+---
+title: "saosTools"
+author: "Bartosz Chrol"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+## Using coordinates of courts
+```{r}
+library("saosTools")
+library("sp")
+library("plotGoogleMaps")
+
+coordinates(cc_coords) <- ~lon+lat
+proj4string(cc_coords) <- CRS("+proj=longlat +datum=WGS84")
+invisible(plotGoogleMaps(cc_coords, zcol = "type", mapTypeId = "ROADMAP", legend = TRUE))
+```
