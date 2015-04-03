@@ -11,7 +11,7 @@ vignette: >
 
 
 ## Using coordinates of courts
-```{r}
+```{r, eval=FALSE}
 library("saosTools")
 library("sp")
 library("plotGoogleMaps")
@@ -20,3 +20,47 @@ coordinates(cc_coords) <- ~lon+lat
 proj4string(cc_coords) <- CRS("+proj=longlat +datum=WGS84")
 invisible(plotGoogleMaps(cc_coords, zcol = "type", mapTypeId = "ROADMAP", legend = TRUE))
 ```
+
+
+## Updating framework
+
+Sometimes you may want to keep some judgments--related data on disc instead of downloading it every time you need them. If you also want these datasets to be up-to-date, you need some kind of updating scheme. `update_all` function may come in handy, below there is an example of its usage and whole updating framework.
+
+Let's say you keep only dates of judgments in a data frame in `dates.RDS` file. You also need to keep information about time of the last update, let's say it's `snapshot_times.txt` file. Your updating script could look like:
+
+```{r, eval=FALSE}
+# source your specific updating function
+source("update_db.R")
+
+# read last time
+times <- readLines("snapshot_time.txt")
+times <- as.POSIXct(tail(times, 1))
+
+# run proper updating function
+update_all(times, update_db)
+
+# write down time, with 1hour correction for possible synchro problems
+write(as.character(Sys.time() - 3600), 
+      file = "snapshot_time.txt", append = TRUE)
+```
+
+You may run this script with `Rscript` or any other tool.
+`update_db` is a user specific function, which in this case could look like:
+
+```{r, eval=FALSE}
+update_db <- function(judgments) {
+  library("saos")
+  
+  dates <- readRDS("dates.RDS")
+  
+  new_dates <- extract(judgments, "judgmentDate")
+  
+  # we need to remove duplicated judgments
+  new_dates <- new_dates[! new_dates$id %in% dates$id]
+  
+  dates <- rbind(dates, new_dates)
+  saveRDS(dates, "dates.RDS")
+  return()
+}
+```
+
